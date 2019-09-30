@@ -39,8 +39,6 @@ class AuthPage extends Component {
             let successfulLogin = null
             let username = this.state.username
             let password = this.state.password
-            console.log(username)
-            console.log(password)
             successfulLogin = login(username, password)
         }
     }
@@ -48,13 +46,10 @@ class AuthPage extends Component {
 
 async function login(username, password) {
     let response = await fetch(authUrl, {
-        method: "POST",
+        method: "GET",
         headers: new Headers({
             "Authorization": "Basic " + encode(username + ":" + password),
             "Content-Type": "application/json"
-        }),
-        body: JSON.stringify({
-            "Authorization": "Test"
         })
     });
     let authorized = await response.json()

@@ -26,7 +26,7 @@ def hello_world():
     return 'Hello, World!'
 
 
-@app.route('/auth', methods=['POST'])
+@app.route('/auth', methods=['GET'])
 @auth.login_required
 def authorize():
     response = jsonify({'authorized': True})
