@@ -8,6 +8,11 @@ const dashboardBannerStyle = {
     justifyContent: 'center'
 }
 
+const logoutButtonStyle = {
+    height: '50px',
+    width: '100px',
+}
+
 class Homepage extends Component {
 
     constructor(props) {
@@ -38,7 +43,9 @@ class Homepage extends Component {
                     <div style={dashboardBannerStyle}>
                         <h1>Astroplanner</h1>
                         <Button
-                            variant="contained"
+                            size="small"
+                            id="contained-button-file"
+                            style={logoutButtonStyle}
                             onClick={ () => this.setAuthorized(false)}
                         >
                             Logout
