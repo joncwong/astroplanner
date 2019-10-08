@@ -1,10 +1,12 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 class Dashboard extends Component {
 
     render() {
         return(
-            "Dashboard"
+            <div>
+                <h4> Dashboard </h4>
+            </div>
         )}
 }
 

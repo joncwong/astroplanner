@@ -10,7 +10,8 @@ class AuthPage extends Component {
         super(props);
         this.state = {
             "username": "",
-            "password": ""
+            "password": "",
+            "message": ""
         };
     }
 
@@ -66,18 +67,5 @@ class AuthPage extends Component {
         return loggedIn 
     }
 }
-
-/* async function login(username, password) { */
-    // let response = await fetch(authUrl, {
-    //     method: "GET",
-    //     headers: new Headers({
-    //         "Authorization": "Basic " + encode(username + ":" + password),
-    //         "Content-Type": "application/json"
-    //     })
-    // });
-    // let authorized = await response.json()
-    // console.log(authorized)
-    // return authorized
-/* } */
 
 export default AuthPage;

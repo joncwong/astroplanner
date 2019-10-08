@@ -6,7 +6,6 @@ import HomePage from '../src/components/homepage/homepage.js'
 function App() {
   return (
     <div className="App">
-      <h1>Astroplanner</h1>
       <HomePage></HomePage>
     </div>
   );
