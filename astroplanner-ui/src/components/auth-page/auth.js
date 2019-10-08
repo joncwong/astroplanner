@@ -5,19 +5,29 @@ import { encode } from 'base-64';
 const authUrl = 'http://localhost:5000/auth'
 
 class AuthPage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            "username": "",
+            "password": ""
+        };
+    }
+
     render() {
         return (
             <div>
                 <TextField
                     label="Username"
                     onChange={this.usernameChange}
+                    onKeyDown={this.handleKeyDown}
                 />
                 <TextField
                     label="Password"
                     type="password"
                     onChange={this.passwordChange}
                     onKeyDown={this.handleKeyDown} 
-            />
+                />
             </div>
         )
     }
@@ -25,36 +35,49 @@ class AuthPage extends Component {
     usernameChange = (user) => {
         this.setState({
             "username": user.target.value
-        })
+        });
     }
 
     passwordChange = (password) => {
         this.setState({
             "password": password.target.value
-        })
+        });
     }
 
-    handleKeyDown = (e) => {
+    handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
-            let successfulLogin = null
-            let username = this.state.username
-            let password = this.state.password
-            successfulLogin = login(username, password)
+            let username = this.state.username;
+            let password = this.state.password;
+            let loggedIn = await this.login(username, password);
+            this.props.setAuthorized(loggedIn)
         }
     }
+
+    login = async (username, password) => {
+        let response = await fetch(authUrl, {
+            method: "GET",
+            headers: new Headers({
+                "Authorization": "Basic " + encode(username + ":" + password),
+                "Content-Type": "application/json"
+            })
+        })
+        let authResponse = await response.json();
+        let loggedIn = authResponse['authorized'];
+        return loggedIn 
+    }
 }
 
-async function login(username, password) {
-    let response = await fetch(authUrl, {
-        method: "GET",
-        headers: new Headers({
-            "Authorization": "Basic " + encode(username + ":" + password),
-            "Content-Type": "application/json"
-        })
-    });
-    let authorized = await response.json()
-    console.log(authorized)
-    return authorized
-}
+/* async function login(username, password) { */
+    // let response = await fetch(authUrl, {
+    //     method: "GET",
+    //     headers: new Headers({
+    //         "Authorization": "Basic " + encode(username + ":" + password),
+    //         "Content-Type": "application/json"
+    //     })
+    // });
+    // let authorized = await response.json()
+    // console.log(authorized)
+    // return authorized
+/* } */
 
 export default AuthPage;
