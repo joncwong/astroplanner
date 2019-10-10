@@ -4,8 +4,8 @@ import Dashboard from '../dashboard/dashboard.js'
 import Button from '@material-ui/core/Button';
 
 const dashboardBannerStyle = {
-    display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    display: 'flex'
 }
 
 const logoutButtonStyle = {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImportButton from './import.js';
 import FilePreviewerTest from './file_previewer.js';
+import Schedule from './schedule.js';
 
 class Dashboard extends Component {
 
@@ -21,27 +22,19 @@ class Dashboard extends Component {
         }
         else {
             text = await file.text();
-            console.log(typeof text)
             let targetList = text.split('\n')
-            console.log(typeof targetList)
             await this.setState({
                 importFile: file,
                 targetList: targetList
             })
         }
-        console.log('importFile: ')
-        console.log(this.state.importFile)
-        console.log('text: ')
-        console.log(text)
-        console.log(typeof text)
-        console.log(text.split('\n').length)
-        console.log(this.state.targetList)
     }
 
     render() {
         return(
             <div>
                 <h4> Dashboard </h4>
+                <Schedule></Schedule>
                 <ImportButton
                     onChange={this.onFileChange}>
                 </ImportButton>
